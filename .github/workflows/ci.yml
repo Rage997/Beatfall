@@ -35,7 +35,7 @@ jobs:
       - run: cargo +stable test --locked
       - run: cargo +stable build --release --locked
       - name: Exercise the terminal, stdin, and real PulseAudio capture
-        run: python3 scripts/smoke.py --binary target/release/cava-with-ball --pulse
+        run: python3 scripts/smoke.py --binary target/release/Beatfall --pulse
       - name: Verify source package
         run: cargo +stable package --locked
 

@@ -1,6 +1,6 @@
-# cava-with-ball
+# Beatfall
 
-![cava-with-ball: a terminal spectrum with bouncing, shaded balls](demo.gif)
+![Beatfall: a terminal spectrum with bouncing, shaded balls](demo.gif)
 
 A Linux terminal audio spectrum with one to eight bouncing, shaded balls (three
 by default). Arcade motion keeps them bouncing and exploring even in quiet
@@ -14,11 +14,11 @@ From a source checkout (stable Rust **1.85+**):
 
 ```sh
 cargo build --release --locked
-./target/release/cava-with-ball --demo --trails
+./target/release/Beatfall --demo --trails
 
 # Or install into ~/.cargo/bin:
 cargo install --path . --locked
-cava-with-ball --demo --balls 3 --palette ocean --trails
+Beatfall --demo --balls 3 --palette ocean --trails
 ```
 
 No native audio development libraries are needed to build. Use a UTF-8 terminal
@@ -29,10 +29,10 @@ Published GitHub releases include Linux x86-64 and ARM64 musl archives with the
 executable, this README, the changelog, and the MIT license:
 
 ```sh
-sha256sum --check cava-with-ball-0.1.0-x86_64-unknown-linux-musl.tar.gz.sha256
-tar -xzf cava-with-ball-0.1.0-x86_64-unknown-linux-musl.tar.gz
-install -Dm755 cava-with-ball-0.1.0-x86_64-unknown-linux-musl/cava-with-ball \
-  "$HOME/.local/bin/cava-with-ball"
+sha256sum --check Beatfall-0.1.0-x86_64-unknown-linux-musl.tar.gz.sha256
+tar -xzf Beatfall-0.1.0-x86_64-unknown-linux-musl.tar.gz
+install -Dm755 Beatfall-0.1.0-x86_64-unknown-linux-musl/Beatfall \
+  "$HOME/.local/bin/Beatfall"
 ```
 
 Use the `aarch64-unknown-linux-musl` archive on ARM64 and substitute the release
@@ -51,11 +51,11 @@ sudo pacman -S libpulse               # Arch Linux
 sudo dnf install pulseaudio-utils     # Fedora
 
 pactl info                            # Confirm your user's server is reachable
-cava-with-ball --list-sources
-cava-with-ball                        # Capture the default sink's monitor
-cava-with-ball --source 42            # Or a source ID from --list-sources
-cava-with-ball --source alsa_output.pci-0000_00_1f.3.analog-stereo.monitor
-cava-with-ball --microphone           # Default input, never a playback monitor
+Beatfall --list-sources
+Beatfall                              # Capture the default sink's monitor
+Beatfall --source 42                  # Or a source ID from --list-sources
+Beatfall --source alsa_output.pci-0000_00_1f.3.analog-stereo.monitor
+Beatfall --microphone                 # Default input, never a playback monitor
 ```
 
 - A **playback monitor** captures audio sent to an output device, not your room.
@@ -83,12 +83,12 @@ detection: convert WAV, compressed audio, s16 PCM, and stereo before piping.
 ```sh
 # Visualize a file in real time; this does not play it through speakers:
 ffmpeg -nostdin -re -i music.flac -vn -f f32le -ac 1 -ar 48000 - \
-  | cava-with-ball --stdin --sample-rate 48000 --trails
+  | Beatfall --stdin --sample-rate 48000 --trails
 
 # Explicit Linux monitor pipeline; replace the device with an actual source:
 parec --device=YOUR_SINK.monitor --raw --format=float32le \
   --channels=1 --rate=48000 --latency-msec=30 \
-  | cava-with-ball --stdin --sample-rate 48000
+  | Beatfall --stdin --sample-rate 48000
 ```
 
 Stdout must remain a terminal; keyboard input is read from `/dev/tty`
@@ -121,7 +121,7 @@ count changes, and reset still work; motion and launch effects remain frozen.
 ## Configuration
 
 ```sh
-cava-with-ball --demo --balls 4 --fps 60 --sensitivity 1.4 \
+Beatfall --demo --balls 4 --fps 60 --sensitivity 1.4 \
   --gravity 32 --palette ember --color truecolor --trails
 ```
 

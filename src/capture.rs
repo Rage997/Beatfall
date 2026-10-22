@@ -114,7 +114,7 @@ pub fn stdin(rate: u32) -> Result<Audio> {
         if io::stdin().is_terminal() {
             bail!(
                 "stdin is a terminal — pipe raw float32le mono PCM at {rate} Hz, e.g. \
-                 `parec --raw --format=float32le --rate={rate} --channels=1 | cava-with-ball --stdin --sample-rate {rate}`"
+                 `parec --raw --format=float32le --rate={rate} --channels=1 | Beatfall --stdin --sample-rate {rate}`"
             );
         }
         // Do not hold Rust's global stdin lock: terminal libraries may need it.

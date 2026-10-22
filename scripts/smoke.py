@@ -207,9 +207,9 @@ def demo_checks(binary, snapshot):
         if snapshot:
             Path(snapshot).write_text(app.screen.text() + "\n", encoding="utf-8")
         app.send(b"++++++++++++")
-        app.expect("CAVA / BALL  8")
+        app.expect("BEATFALL  8")
         app.send(b"------------")
-        app.expect("CAVA / BALL  1")
+        app.expect("BEATFALL  1")
         app.send(b"p")
         app.expect("PAUSED")
         frozen = app.screen.field()
@@ -226,7 +226,7 @@ def demo_checks(binary, snapshot):
         app.resize(16, 6)
         app.expect("Resize")
         app.resize(80, 28)
-        app.expect("CAVA / BALL")
+        app.expect("BEATFALL")
         app.finish()
     for mode, pattern in [("auto", rb"\x1b\[48;5;"), ("truecolor", rb"\x1b\[48;2;")]:
         with Terminal(binary, ["--demo", "--color", mode], {"NO_COLOR": "1"}) as app:

@@ -19,13 +19,13 @@ if [[ ! -f $binary || ! -x $binary ]]; then
     echo "Binary must be an executable file: $binary" >&2
     exit 2
 fi
-if [[ $("$binary" --version) != "cava-with-ball $version" ]]; then
+if [[ $("$binary" --version) != "Beatfall $version" ]]; then
     echo "Binary version does not match $version" >&2
     exit 1
 fi
 mkdir -p -- "$out_dir"
 out_dir=$(cd -- "$out_dir" && pwd)
-stem="cava-with-ball-$version-$target"
+stem="Beatfall-$version-$target"
 archive="$out_dir/$stem.tar.gz"
 if [[ -e $archive || -e $archive.sha256 ]]; then
     echo "Refusing to overwrite existing release artifacts: $archive" >&2
@@ -34,8 +34,8 @@ fi
 tmp=$(mktemp -d)
 trap 'rm -rf -- "$tmp"' EXIT
 mkdir -- "$tmp/$stem"
-cp -- "$binary" "$tmp/$stem/cava-with-ball"
-chmod 755 "$tmp/$stem/cava-with-ball"
+cp -- "$binary" "$tmp/$stem/Beatfall"
+chmod 755 "$tmp/$stem/Beatfall"
 for file in README.md LICENSE CHANGELOG.md; do
     cp -- "$root/$file" "$tmp/$stem/$file"
     chmod 644 "$tmp/$stem/$file"

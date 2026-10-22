@@ -553,7 +553,7 @@ impl Renderer {
             self.text.clear();
             let _ = write!(
                 self.text,
-                "CAVA / BALL  {}  {}",
+                "BEATFALL  {}  {}",
                 world.balls.len(),
                 if view.paused {
                     "PAUSED"
