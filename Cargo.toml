@@ -1,0 +1,27 @@
+[package]
+name = "cava-with-ball"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+description = "A real-time terminal spectrum with bouncing balls"
+license = "MIT"
+readme = "README.md"
+keywords = ["audio", "spectrum", "terminal", "visualizer", "linux"]
+categories = ["command-line-utilities", "multimedia::audio", "visualization"]
+publish = false
+include = ["Cargo.toml", "Cargo.lock", "src/**", "README.md", "LICENSE", "CHANGELOG.md"]
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4.5", features = ["derive"] }
+crossterm = { version = "0.29", features = ["use-dev-tty"] }
+rustfft = "6.2"
+serde_json = "1.0"
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "debuginfo"
